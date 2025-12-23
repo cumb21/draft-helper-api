@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    # Собираем образ из текущей папки (ищет Dockerfile)
+    build: .
+    # Название контейнера, которое будет видно в Docker Desktop
+    container_name: draft_helper_app
+    # Проброс портов: на ПК будет доступен порт 8000
+    ports:
+      - "8000:8000"
+    # Переменные окружения (ключ уже в коде, но здесь можно донастроить)
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Политика перезапуска при сбое
+    restart: always
