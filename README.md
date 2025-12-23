@@ -15,3 +15,6 @@ Draft Helper API (Генератор черновиков)
 1. Установите зависимости: pip install -r requirements.txt
 2. Запустите сервер: uvicorn main:app --reload
 Откройте документацию: http://127.0.0.1:8000/docs
+
+
+***Для запуска необходим VPN(специфика взятого API)***
