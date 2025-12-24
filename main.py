@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from groq import Groq
 
-# --- 1. Настройки Базы Данных (SQLite) ---
+# Настройки Базы Данных (SQLite)
 DATABASE_URL = "sqlite:///./drafts.db"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -24,11 +24,11 @@ class DraftEntry(Base):
 
 Base.metadata.create_all(bind=engine)
 
-# --- 2. Инициализация LLM с твоим ключом ---
+# Инициализация LLM с ключом 
 # Ключ вставлен напрямую для максимальной простоты запуска
 client = Groq(api_key="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")
 
-# --- 3. Описание моделей данных (для Swagger) ---
+# Описание моделей данных (для Swagger)
 
 class EmailRequest(BaseModel):
     to: str = Field(..., title="Получатель", example="Коллега")
@@ -48,7 +48,7 @@ class DraftResponse(BaseModel):
     class Config:
         from_attributes = True
 
-# --- 4. Настройка FastAPI приложения ---
+# Настройка FastAPI приложения
 app = FastAPI(
     title="API 'Генератор черновиков'",
     description="Сервис для автоматического создания текстов писем и постов на русском языке",
@@ -62,7 +62,7 @@ def get_db():
     finally:
         db.close()
 
-# --- 5. Эндпоинты API ---
+# Эндпоинты API
 
 @app.post("/draft/email", response_model=DraftResponse, tags=["Генерация"], summary="Создать черновик письма")
 def create_email_draft(req: EmailRequest, db: Session = Depends(get_db)):
