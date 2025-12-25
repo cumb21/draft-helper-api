@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем основной код программы (наш main.py)
 COPY main.py .
 
+# Копируем темплейты
+COPY ./templates ./templates
+
 # Открываем порт 8000 для доступа к API
 EXPOSE 8000
 
