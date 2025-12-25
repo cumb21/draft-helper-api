@@ -3,3 +3,5 @@ uvicorn
 sqlalchemy
 groq
 python-dotenv
+jinja2
+aiosqlite
